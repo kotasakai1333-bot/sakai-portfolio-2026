@@ -122,22 +122,19 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Mobile header + drawer */}
-      <div className="sticky top-0 z-30 border-b border-white/10 bg-black/70 px-4 py-3 backdrop-blur lg:hidden">
+      {/* Mobile header - Sticky at top */}
+      <header className="sticky top-0 z-30 border-b border-white/10 bg-black/80 backdrop-blur-md px-4 py-3 md:hidden">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-500">
+            <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-400">
               PORTFOLIO
-            </p>
-            <p className="text-xs font-medium text-zinc-100">
-              19歳 理学部生の決意表明
             </p>
           </div>
 
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle navigation"
-            className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-100 shadow-[0_0_18px_rgba(59,130,246,0.55)]"
+            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-100 shadow-[0_0_18px_rgba(59,130,246,0.55)] transition hover:bg-white/10"
           >
             <motion.span
               animate={open ? { rotate: 45, y: 1 } : { rotate: 0, y: -3 }}
@@ -153,54 +150,54 @@ export function Sidebar() {
             />
           </button>
         </div>
-      </div>
+      </header>
 
       <AnimatePresence>
         {open && (
           <>
-            {/* Overlay */}
+            {/* Full-screen overlay */}
             <motion.button
               type="button"
               aria-label="Close menu overlay"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.18 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              className="fixed inset-0 z-40 cursor-default bg-black/60 backdrop-blur-[2px] lg:hidden"
+              className="fixed inset-0 z-40 cursor-default bg-black/80 backdrop-blur-sm md:hidden"
             />
 
-            {/* Drawer */}
+            {/* Full-screen drawer from right */}
             <motion.aside
-              initial={{ x: 24, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              exit={{ x: 24, opacity: 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-              className="fixed right-0 top-0 z-50 h-dvh w-[86%] max-w-sm overflow-y-auto border-l border-sky-500/20 bg-gradient-to-br from-black via-black/95 to-[#070a18] p-4 shadow-[0_0_40px_rgba(56,189,248,0.25)] lg:hidden"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className="fixed right-0 top-0 z-50 h-dvh w-full max-w-md overflow-y-auto border-l border-sky-500/20 bg-gradient-to-br from-black via-black/98 to-[#070a18] p-6 shadow-[0_0_60px_rgba(56,189,248,0.3)] md:hidden"
             >
-              <div className="flex items-start justify-between gap-3">
+              <div className="mb-8 flex items-center justify-between">
                 <div>
-                  <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-500">
+                  <p className="text-[11px] font-semibold tracking-[0.22em] text-zinc-400">
                     MENU
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-zinc-50">
+                  <p className="mt-1 text-lg font-semibold text-zinc-50">
                     Navigation
                   </p>
                 </div>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close navigation"
-                  className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs text-zinc-100"
+                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-zinc-100 transition hover:bg-white/10"
                 >
-                  Close
+                  ✕
                 </button>
               </div>
 
-              <div className="mt-4 space-y-2">
-                <p className="text-[10px] font-semibold tracking-[0.18em] text-zinc-500">
+              <div className="mb-8 space-y-3">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-400">
                   PAGES
                 </p>
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   {navItems.map((item) => (
                     <Link
                       key={item.href}
@@ -208,17 +205,17 @@ export function Sidebar() {
                       onClick={() => setOpen(false)}
                     >
                       <div
-                        className={`flex items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-[13px] transition ${
+                        className={`flex items-center justify-between gap-4 rounded-xl px-4 py-3.5 text-[15px] transition ${
                           isActive(item.href)
                             ? "bg-gradient-to-r from-sky-500/25 via-blue-500/20 to-violet-500/25 text-sky-100 shadow-[0_0_20px_rgba(56,189,248,0.4)]"
-                            : "text-zinc-300 hover:bg-white/[0.04]"
+                            : "text-zinc-300 hover:bg-white/[0.06]"
                         }`}
                       >
-                        <span className="break-words whitespace-normal">
+                        <span className="break-words whitespace-normal font-medium">
                           {item.label}
                         </span>
                         <span
-                          className={`h-1.5 w-1.5 shrink-0 rounded-full transition ${
+                          className={`h-2 w-2 shrink-0 rounded-full transition ${
                             isActive(item.href)
                               ? "bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.9)]"
                               : "bg-zinc-600"
@@ -230,24 +227,24 @@ export function Sidebar() {
                 </div>
               </div>
 
-              <div className="mt-5 space-y-2">
-                <p className="text-[10px] font-semibold tracking-[0.18em] text-zinc-500">
+              <div className="space-y-3">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-400">
                   SNS
                 </p>
-                <div className="space-y-1.5 text-[12px]">
+                <div className="space-y-2 text-[14px]">
                   {snsLinks.map(({ label, href, icon: Icon }) => (
                     <a
                       key={label}
                       href={href}
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-between gap-2 rounded-lg border border-zinc-800/80 bg-white/[0.02] px-3 py-2 text-zinc-300 transition hover:border-sky-400/60 hover:bg-sky-500/5 hover:text-sky-50"
+                      className="group flex items-center justify-between gap-3 rounded-lg border border-zinc-800/80 bg-white/[0.02] px-4 py-3 text-zinc-300 transition hover:border-sky-400/60 hover:bg-sky-500/5 hover:text-sky-50"
                     >
-                      <span className="inline-flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-zinc-400 transition group-hover:text-sky-200" />
-                        {label}
+                      <span className="inline-flex items-center gap-2.5">
+                        <Icon className="h-5 w-5 text-zinc-400 transition group-hover:text-sky-200" />
+                        <span className="font-medium">{label}</span>
                       </span>
-                      <span className="text-[10px] text-zinc-500 transition group-hover:text-sky-200">
+                      <span className="text-xs text-zinc-500 transition group-hover:text-sky-200">
                         ↗
                       </span>
                     </a>

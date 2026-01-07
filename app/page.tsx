@@ -1,13 +1,13 @@
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-1 justify-center px-4 py-6 text-sm text-zinc-100 sm:px-6 sm:py-10 lg:px-8">
-      <main className="glass-panel relative mx-auto flex w-full max-w-5xl flex-col gap-10 border border-white/10 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
+    <div className="flex min-h-screen flex-1 justify-center px-4 py-6 text-sm text-zinc-100 sm:px-6 sm:py-10 md:px-8">
+      <main className="glass-panel relative mx-auto flex w-full max-w-5xl flex-col gap-8 border border-white/10 px-5 py-6 sm:gap-10 sm:px-6 sm:py-8 md:px-8">
         <header className="flex flex-col gap-3 border-b border-white/5 pb-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-[11px] font-semibold tracking-[0.22em] text-sky-300">
               HOME / ACHIEVEMENTS
             </p>
-            <h1 className="mt-2 break-words whitespace-normal text-balance text-2xl font-semibold text-zinc-50 sm:text-3xl lg:text-4xl">
+            <h1 className="mt-2 break-words whitespace-normal text-balance text-3xl font-semibold leading-tight text-zinc-50 sm:text-4xl md:text-5xl">
               理学的な分析力で磨いた
               <span className="bg-gradient-to-r from-sky-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
                 {" "}

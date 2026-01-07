@@ -30,9 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-zinc-50`}
       >
-        <div className="flex min-h-screen bg-gradient-to-br from-[#050816] via-black to-[#050816]">
+        <div className="min-h-screen bg-gradient-to-br from-[#050816] via-black to-[#050816] md:flex">
           <Sidebar />
-          <main className="flex-1">
+          <main className="w-full md:flex-1">
             <MotionRoot>{children}</MotionRoot>
           </main>
         </div>
