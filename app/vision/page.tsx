@@ -1,22 +1,22 @@
 export default function VisionPage() {
   return (
-    <div className="flex min-h-screen flex-1 justify-center px-4 py-6 text-sm text-zinc-100 sm:px-6 sm:py-10">
-      <main className="glass-panel relative mx-auto flex w-full max-w-4xl flex-col gap-8 border border-white/10 px-5 py-6 sm:px-8 sm:py-8">
+    <div className="flex min-h-screen flex-1 justify-center px-4 py-6 text-sm text-zinc-100 sm:px-6 sm:py-10 lg:px-8">
+      <main className="glass-panel relative mx-auto flex w-full max-w-4xl flex-col gap-8 border border-white/10 px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
         <header className="border-b border-white/5 pb-5">
           <p className="text-[11px] font-semibold tracking-[0.22em] text-sky-300">
             2026 VISION
           </p>
-          <h1 className="mt-2 text-balance text-2xl font-semibold text-zinc-50 sm:text-3xl">
+          <h1 className="mt-2 break-words whitespace-normal text-balance text-2xl font-semibold text-zinc-50 sm:text-3xl">
             2026：分析・提言から「実務の実装」までを
             一気通貫する伴走者へ
           </h1>
-          <p className="mt-2 text-[13px] text-zinc-300">
+          <p className="mt-2 break-words whitespace-normal text-[13px] leading-relaxed text-zinc-300">
             IT事業による経済的自立（年間収益250万円）と、
             コンサル×ITを一人で完結させる専門性の統合を目指します。
           </p>
         </header>
 
-        <section className="grid gap-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
           <article className="space-y-4 text-[13px] leading-relaxed text-zinc-200">
             <p>
               2026年、IT事業を通じた年間収益<span className="text-sky-300">250万円</span>
