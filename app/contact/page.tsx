@@ -55,12 +55,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4 py-6 text-sm text-zinc-100 sm:py-10 sm:text-base md:px-8">
+    <div className="flex min-h-screen items-center justify-center px-4 py-8 text-sm text-zinc-100 sm:px-6 sm:py-10 sm:text-base lg:px-8">
       <motion.main
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4 }}
-        className="glass-panel relative mx-auto flex w-full max-w-3xl flex-col gap-8 border border-white/10 px-5 py-6 sm:gap-10 sm:px-6 sm:py-8 md:px-10 md:py-10"
+        className="glass-panel relative mx-auto flex w-full max-w-3xl flex-col gap-10 border border-white/10 px-4 py-6 sm:gap-12 sm:px-6 sm:py-10 lg:px-8"
       >
         {/* Header */}
         <div className="flex items-center justify-between gap-4">
@@ -75,7 +75,7 @@ export default function ContactPage() {
 
         {/* Title */}
         <section className="space-y-4">
-          <h1 className="break-words whitespace-normal text-balance text-3xl font-semibold leading-tight text-zinc-50 sm:text-4xl md:text-5xl">
+          <h1 className="break-words whitespace-normal text-balance text-2xl font-semibold leading-tight text-zinc-50 sm:text-4xl md:text-5xl">
             お問い合わせ
           </h1>
           <p className="max-w-2xl break-words whitespace-normal text-balance text-[13px] leading-relaxed text-zinc-300 sm:text-[15px]">

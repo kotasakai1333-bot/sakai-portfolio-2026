@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Instagram, Facebook, Twitter } from "lucide-react";
+import { Instagram, Facebook, Twitter, X } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home（実績）" },
@@ -43,7 +43,7 @@ export function Sidebar() {
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden h-full w-64 flex-col justify-between border-r border-white/10 bg-black/40 px-5 py-6 text-sm text-zinc-100 lg:flex">
+      <aside className="hidden h-full w-64 flex-col justify-between border-r border-white/10 bg-black/40 px-5 py-6 text-sm text-zinc-100 md:flex">
         <div className="space-y-8">
           <div>
             <p className="text-xs font-semibold tracking-[0.22em] text-zinc-400">
@@ -122,40 +122,39 @@ export function Sidebar() {
         </div>
       </aside>
 
-      {/* Mobile header - Sticky at top */}
-      <header className="sticky top-0 z-30 border-b border-white/10 bg-black/80 backdrop-blur-md px-4 py-3 md:hidden">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-400">
-              PORTFOLIO
-            </p>
-          </div>
-
-          <button
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle navigation"
-            className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-100 shadow-[0_0_18px_rgba(59,130,246,0.55)] transition hover:bg-white/10"
-          >
-            <motion.span
-              animate={open ? { rotate: 45, y: 1 } : { rotate: 0, y: -3 }}
-              className="absolute h-[1.5px] w-4 rounded-full bg-zinc-100"
-            />
-            <motion.span
-              animate={open ? { opacity: 0 } : { opacity: 1 }}
-              className="absolute h-[1.5px] w-4 rounded-full bg-zinc-100"
-            />
-            <motion.span
-              animate={open ? { rotate: -45, y: -1 } : { rotate: 0, y: 3 }}
-              className="absolute h-[1.5px] w-4 rounded-full bg-zinc-100"
-            />
-          </button>
+      {/* Mobile sticky header */}
+      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-black/80 px-4 py-3 backdrop-blur-md md:hidden">
+        <div>
+          <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-400">
+            PORTFOLIO
+          </p>
         </div>
+
+        <button
+          onClick={() => setOpen((v) => !v)}
+          aria-label="Toggle navigation"
+          className="relative flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-100 shadow-[0_0_18px_rgba(59,130,246,0.55)] transition hover:bg-white/10"
+        >
+          <motion.span
+            animate={open ? { rotate: 45, y: 1 } : { rotate: 0, y: -3 }}
+            className="absolute h-[1.5px] w-5 rounded-full bg-zinc-100"
+          />
+          <motion.span
+            animate={open ? { opacity: 0 } : { opacity: 1 }}
+            className="absolute h-[1.5px] w-5 rounded-full bg-zinc-100"
+          />
+          <motion.span
+            animate={open ? { rotate: -45, y: -1 } : { rotate: 0, y: 3 }}
+            className="absolute h-[1.5px] w-5 rounded-full bg-zinc-100"
+          />
+        </button>
       </header>
 
+      {/* Mobile fullscreen drawer */}
       <AnimatePresence>
         {open && (
           <>
-            {/* Full-screen overlay */}
+            {/* Overlay */}
             <motion.button
               type="button"
               aria-label="Close menu overlay"
@@ -167,34 +166,36 @@ export function Sidebar() {
               className="fixed inset-0 z-40 cursor-default bg-black/80 backdrop-blur-sm md:hidden"
             />
 
-            {/* Full-screen drawer from right */}
+            {/* Fullscreen drawer from right */}
             <motion.aside
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               className="fixed right-0 top-0 z-50 h-dvh w-full max-w-md overflow-y-auto border-l border-sky-500/20 bg-gradient-to-br from-black via-black/98 to-[#070a18] p-6 shadow-[0_0_60px_rgba(56,189,248,0.3)] md:hidden"
             >
-              <div className="mb-8 flex items-center justify-between">
+              {/* Header */}
+              <div className="flex items-center justify-between border-b border-white/10 pb-4">
                 <div>
-                  <p className="text-[11px] font-semibold tracking-[0.22em] text-zinc-400">
+                  <p className="text-[10px] font-semibold tracking-[0.22em] text-zinc-400">
                     MENU
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-zinc-50">
+                  <p className="mt-1 text-base font-semibold text-zinc-50">
                     Navigation
                   </p>
                 </div>
                 <button
                   onClick={() => setOpen(false)}
                   aria-label="Close navigation"
-                  className="rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-zinc-100 transition hover:bg-white/10"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/5 text-zinc-100 transition hover:bg-white/10 hover:border-sky-400/60"
                 >
-                  ✕
+                  <X className="h-5 w-5" />
                 </button>
               </div>
 
-              <div className="mb-8 space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-400">
+              {/* Navigation items */}
+              <div className="mt-6 space-y-3">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-500">
                   PAGES
                 </p>
                 <div className="space-y-2">
@@ -205,7 +206,7 @@ export function Sidebar() {
                       onClick={() => setOpen(false)}
                     >
                       <div
-                        className={`flex items-center justify-between gap-4 rounded-xl px-4 py-3.5 text-[15px] transition ${
+                        className={`flex items-center justify-between gap-3 rounded-xl px-4 py-3.5 text-[14px] transition ${
                           isActive(item.href)
                             ? "bg-gradient-to-r from-sky-500/25 via-blue-500/20 to-violet-500/25 text-sky-100 shadow-[0_0_20px_rgba(56,189,248,0.4)]"
                             : "text-zinc-300 hover:bg-white/[0.06]"
@@ -227,29 +228,38 @@ export function Sidebar() {
                 </div>
               </div>
 
-              <div className="space-y-3">
-                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-400">
+              {/* SNS links */}
+              <div className="mt-8 space-y-3">
+                <p className="text-[11px] font-semibold tracking-[0.18em] text-zinc-500">
                   SNS
                 </p>
-                <div className="space-y-2 text-[14px]">
+                <div className="space-y-2">
                   {snsLinks.map(({ label, href, icon: Icon }) => (
                     <a
                       key={label}
                       href={href}
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center justify-between gap-3 rounded-lg border border-zinc-800/80 bg-white/[0.02] px-4 py-3 text-zinc-300 transition hover:border-sky-400/60 hover:bg-sky-500/5 hover:text-sky-50"
+                      className="group flex items-center justify-between gap-3 rounded-xl border border-zinc-800/80 bg-white/[0.02] px-4 py-3 text-[13px] text-zinc-300 transition hover:border-sky-400/60 hover:bg-sky-500/5 hover:text-sky-50"
                     >
-                      <span className="inline-flex items-center gap-2.5">
+                      <span className="inline-flex items-center gap-3">
                         <Icon className="h-5 w-5 text-zinc-400 transition group-hover:text-sky-200" />
                         <span className="font-medium">{label}</span>
                       </span>
-                      <span className="text-xs text-zinc-500 transition group-hover:text-sky-200">
+                      <span className="text-[11px] text-zinc-500 transition group-hover:text-sky-200">
                         ↗
                       </span>
                     </a>
                   ))}
                 </div>
+              </div>
+
+              {/* Footer */}
+              <div className="mt-8 border-t border-white/10 pt-4 text-[10px] text-zinc-500">
+                <p>© 2026 坂井 洸太</p>
+                <p className="mt-1 text-[10px] text-zinc-600">
+                  Next.js / Framer Motion / Tailwind CSS
+                </p>
               </div>
             </motion.aside>
           </>
@@ -258,4 +268,3 @@ export function Sidebar() {
     </>
   );
 }
-
